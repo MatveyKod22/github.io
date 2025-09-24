@@ -2,59 +2,1019 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Перенаправление...</title>
-    <script>
-        // Перенаправление при загрузке страницы
-        window.onload = function() {
-            window.location.href = "https://direct-link.net/1400395/gKQZ9BV23GHj";
-        };
-        
-        // Альтернативный метод перенаправления
-        setTimeout(function() {
-            window.location.href = "https://direct-link.net/1400395/gKQZ9BV23GHj";
-        }, 100);
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VapeMarket - Магазин товаров для всех возрастов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B5FBF;
+            --secondary: #2d2d2d;
+            --accent: #00c853;
+            --text: #333;
+            --bg: #f8f9fa;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #6e48aa, #9d50bb);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 15vw;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* ШАПКА С АВТОМАТИЧЕСКИМ СКРЫТИЕМ ПРИ СКРОЛЛЕ */
+        .header {
+            background: linear-gradient(135deg, var(--secondary), #000);
+            padding: 3vw 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .header.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4%;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: clamp(5vw, 6vw, 28px);
+            font-weight: bold;
             color: white;
-            text-align: center;
-            padding: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2vw;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3vw;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: clamp(3vw, 3.5vw, 16px);
+            transition: color 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 3vw;
+            align-items: center;
+        }
+
+        .action-btn {
+            color: white;
+            text-decoration: none;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-size: clamp(2.5vw, 3vw, 12px);
         }
-        .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
+
+        /* Индикатор для возврата к шапке */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 5vw;
+            right: 5vw;
+            background: var(--primary);
+            color: white;
+            width: 12vw;
+            height: 12vw;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 2s linear infinite;
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 0.5vw 1vw rgba(0,0,0,0.3);
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .scroll-to-top.visible {
+            opacity: 1;
         }
-        a {
-            color: #fff;
-            text-decoration: underline;
+
+        .scroll-to-top i {
+            font-size: clamp(4vw, 5vw, 20px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #8B5FBF, #6A4C9C);
+            color: white;
+            padding: 10vw 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: clamp(5vw, 7vw, 36px);
+            margin-bottom: 3vw;
+        }
+
+        .hero p {
+            font-size: clamp(3.5vw, 4vw, 18px);
+            margin-bottom: 4vw;
+        }
+
+        .age-notice {
+            background: #00c853;
+            color: white;
+            padding: 2vw 4vw;
+            border-radius: 5vw;
+            font-size: clamp(3.5vw, 4vw, 16px);
+            display: inline-block;
+        }
+
+        .products-section {
+            padding: 10vw 0;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: clamp(6vw, 8vw, 32px);
+            text-align: center;
+            margin-bottom: 8vw;
+            position: relative;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(45vw, 1fr));
+            gap: 4vw;
+            width: 100%;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 3vw;
+            padding: 4vw;
+            box-shadow: 0 1vw 3vw rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-1vw);
+            box-shadow: 0 2vw 5vw rgba(0,0,0,0.2);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 2vw;
+            right: 2vw;
+            background: var(--accent);
+            color: white;
+            padding: 1vw 2vw;
+            border-radius: 3vw;
+            font-size: clamp(2.5vw, 3vw, 12px);
+        }
+
+        .product-icon {
+            font-size: clamp(10vw, 12vw, 48px);
+            margin: 3vw 0;
+        }
+
+        .product-name {
+            font-size: clamp(3.5vw, 4.5vw, 18px);
+            font-weight: bold;
+            margin-bottom: 2vw;
+        }
+
+        .product-desc {
+            color: #666;
+            font-size: clamp(3vw, 3.5vw, 14px);
+            margin-bottom: 3vw;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: center;
+            gap: 3vw;
+            align-items: center;
+            margin-bottom: 3vw;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        .price-old {
+            font-size: clamp(3vw, 3.5vw, 16px);
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .price-new {
+            font-size: clamp(4.5vw, 5.5vw, 22px);
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .currency {
+            font-size: clamp(2.5vw, 3vw, 14px);
+            color: #666;
+            width: 100%;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 3vw;
+            background: linear-gradient(45deg, var(--primary), #9D6BCC);
+            color: white;
+            border: none;
+            border-radius: 2vw;
+            font-size: clamp(3.5vw, 4vw, 16px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #9D6BCC, var(--primary));
+        }
+
+        /* Модальное окно деталей товара */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 6vw;
+            border-radius: 3vw;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 3vw;
+            top: 3vw;
+            font-size: clamp(5vw, 6vw, 24px);
+            cursor: pointer;
+            color: #666;
+            z-index: 2001;
+        }
+
+        .instruction {
+            background: #e3f2fd;
+            padding: 3vw;
+            border-radius: 2vw;
+            margin-bottom: 4vw;
+            border-left: 1vw solid #2196f3;
+        }
+
+        .instruction h4 {
+            color: #1976d2;
+            margin-bottom: 2vw;
+            font-size: clamp(3.5vw, 4vw, 16px);
+        }
+
+        .instruction ol {
+            padding-left: 5vw;
+            font-size: clamp(3vw, 3.5vw, 14px);
+            color: #555;
+        }
+
+        .instruction li {
+            margin-bottom: 1vw;
+        }
+
+        .option-group {
+            margin: 4vw 0;
+        }
+
+        .option-label {
+            font-size: clamp(3.5vw, 4vw, 16px);
+            font-weight: bold;
+            margin-bottom: 2vw;
+            display: block;
+        }
+
+        .taste-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2vw;
+            margin-bottom: 3vw;
+            max-height: 50vh;
+            overflow-y: auto;
+            padding: 2vw;
+            border: 1px solid #e0e0e0;
+            border-radius: 2vw;
+        }
+
+        .taste-btn {
+            padding: 3vw 2vw;
+            border: 2px solid #e0e0e0;
+            border-radius: 2vw;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: clamp(3vw, 3.5vw, 14px);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        .taste-btn.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), #9D6BCC);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 1vw 2vw rgba(139, 95, 191, 0.3);
+        }
+
+        .taste-emoji {
+            font-size: clamp(4vw, 5vw, 20px);
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3vw;
+            margin-bottom: 3vw;
+            max-height: 40vh;
+            overflow-y: auto;
+            padding: 2vw;
+            border: 1px solid #e0e0e0;
+            border-radius: 2vw;
+        }
+
+        .color-btn {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 3px solid #e0e0e0;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .color-btn.selected {
+            border-color: var(--primary);
+            transform: scale(1.2);
+            box-shadow: 0 0.5vw 1vw rgba(0,0,0,0.2);
+        }
+
+        .color-btn.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: clamp(3vw, 4vw, 16px);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4vw;
+            margin: 4vw 0;
+            background: #f8f9fa;
+            padding: 3vw;
+            border-radius: 2vw;
+        }
+
+        .quantity-btn {
+            width: 10vw;
+            height: 10vw;
+            border: 2px solid var(--primary);
+            background: white;
+            border-radius: 50%;
+            font-size: clamp(4vw, 5vw, 20px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .quantity-value {
+            font-size: clamp(5vw, 6vw, 24px);
+            font-weight: bold;
+            min-width: 12vw;
+            text-align: center;
+        }
+
+        .final-price {
+            background: linear-gradient(135deg, #8B5FBF, #6A4C9C);
+            padding: 4vw;
+            border-radius: 2vw;
+            margin: 4vw 0;
+            text-align: center;
+            color: white;
+        }
+
+        .final-price-text {
+            font-size: clamp(5vw, 6vw, 24px);
+            font-weight: bold;
+            margin: 1vw 0;
+        }
+
+        .payment-btn {
+            width: 100%;
+            padding: 3vw;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: white;
+            border: none;
+            border-radius: 2vw;
+            font-size: clamp(3.5vw, 4vw, 16px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 2vw 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2vw;
+        }
+
+        .payment-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #ff8c42, #ff6b35);
+        }
+
+        .copy-btn {
+            width: 100%;
+            padding: 3vw;
+            background: linear-gradient(45deg, #00c853, #00e676);
+            color: white;
+            border: none;
+            border-radius: 2vw;
+            font-size: clamp(3.5vw, 4vw, 16px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 2vw 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2vw;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #00e676, #00c853);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 20vw;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 3vw;
+            }
+            
+            .nav-links {
+                gap: 4vw;
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 6vw;
+            }
+            
+            .product-card {
+                padding: 6vw;
+            }
+            
+            .hero {
+                padding: 15vw 0;
+            }
+
+            .taste-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .color-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Запрет горизонтального скролла */
+        body {
+            overflow-x: hidden;
+            width: 100vw;
+        }
+        
+        * {
+            max-width: 100vw;
         }
     </style>
 </head>
 <body>
-    <div class="loader"></div>
-    <h1>Перенаправление...</h1>
-    <p>Если перенаправление не произошло автоматически, нажмите <a href="https://direct-link.net/1400395/gKQZ9BV23GHj">ссылку</a>.</p>
-    
-    <noscript>
-        <p>Для автоматического перенаправления требуется JavaScript. Пожалуйста, включите JavaScript или перейдите по <a href="https://direct-link.net/1400395/gKQZ9BV23GHj">прямой ссылке</a>.</p>
-    </noscript>
+    <!-- Индикатор для возврата к шапке -->
+    <div class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- ШАПКА С АВТОМАТИЧЕСКИМ СКРЫТИЕМ -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <i class="fas fa-smoking"></i>VapeMarket
+                </a>
+                <div class="nav-links">
+                    <a onclick="showCategory('all')">Все товары</a>
+                    <a onclick="showCategory('devices')">🚬 Устройства</a>
+                    <a onclick="showCategory('liquids')">💧 Жидкости</a>
+                    <a onclick="showCategory('pods')">📦 Поды</a>
+                    <a onclick="showCategory('condoms')">💝 Презервативы</a>
+                    <a onclick="showCategory('accessories')">🔧 Аксессуары</a>
+                </div>
+                <div class="user-actions">
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Корзина</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Товары для всех возрастов от 7 лет</h1>
+            <p>Электронные сигареты • Жидкости • Презервативы • Аксессуары</p>
+            <div class="age-notice">
+                ✅ Продажа разрешена с 7 лет • 🚚 Доставка 1-2 дня
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">🛍️ Каталог товаров</h2>
+
+            <div class="products-grid" id="products-grid">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно деталей товара -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalProductInfo">
+                <!-- Контент будет заполнен JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Увеличенный ассортимент товаров с большим количеством цветов и вкусов
+        const allProducts = [
+            // Устройства (скидка 100 BYN на товары дороже 50 BYN)
+            {id: 1, name: "IQOS ILUMA PRIME", price: 99, oldPrice: 199, category: "devices", icon: "🚬", 
+             desc: "Премиум устройство с индукционным нагревом", 
+             colors: ["Черный", "Серебристый", "Синий", "Красный", "Белый", "Золотой", "Фиолетовый", "Розовый", "Зеленый", "Градиентный", "Хаки", "Оранжевый"],
+             defaultColor: "Черный"},
+            
+            {id: 2, name: "GLO HYPER X2", price: 49, oldPrice: 149, category: "devices", icon: "💨", 
+             desc: "Компактное и мощное устройство", 
+             colors: ["Черный", "Белый", "Фиолетовый", "Золотой", "Серебристый", "Синий", "Розовый", "Красный", "Зеленый", "Бирюзовый"],
+             defaultColor: "Черный"},
+            
+            {id: 3, name: "JUUL 2.0", price: 35, oldPrice: 99, category: "devices", icon: "🔋", 
+             desc: "Стильный дизайн, простота использования", 
+             colors: ["Серый", "Синий", "Розовый", "Зеленый", "Черный", "Белый", "Фиолетовый", "Золотой", "Бронзовый"],
+             defaultColor: "Серый"},
+
+            {id: 4, name: "VEEV NOW", price: 29, oldPrice: 129, category: "devices", icon: "⚡", 
+             desc: "Быстрый нагрев, долгая работа", 
+             colors: ["Черный", "Белый", "Синий", "Красный", "Серебристый", "Золотой", "Фиолетовый"],
+             defaultColor: "Черный"},
+
+            // Жидкости (увеличенное количество вкусов)
+            {id: 101, name: "Жидкость для заправки", price: 14, oldPrice: 19, category: "liquids", icon: "💧", 
+             desc: "Выберите желаемый вкус", 
+             tastes: [
+                {name: "Яблоко-Мята", emoji: "🍏"}, {name: "Табак-Ваниль", emoji: "🌾"}, 
+                {name: "Клубника-Банан", emoji: "🍓"}, {name: "Манго-Лёд", emoji: "🥭"},
+                {name: "Мята-Ментол", emoji: "❄️"}, {name: "Кофе-Шоколад", emoji: "☕"},
+                {name: "Вишня-Ваниль", emoji: "🍒"}, {name: "Дыня-Арбуз", emoji: "🍈"},
+                {name: "Кола-Лёд", emoji: "🥤"}, {name: "Банановый молочный", emoji: "🍌"},
+                {name: "Киви-Лайм", emoji: "🥝"}, {name: "Персик-Лёд", emoji: "🍑"},
+                {name: "Карамельное яблоко", emoji: "🍎"}, {name: "Кокос-Ананас", emoji: "🍍"},
+                {name: "Ванильное мороженое", emoji: "🍦"}, {name: "Красный банан", emoji: "🔴"},
+                {name: "Черника-Малина", emoji: "🫐"}, {name: "Лимон-Имбирь", emoji: "🍋"},
+                {name: "Грейпфрут", emoji: "🍊"}, {name: "Клюква", emoji: "🔴"}
+             ], defaultTaste: "Яблоко-Мята"},
+
+            // Поды
+            {id: 201, name: "Стики IQOS TEREA", price: 25, oldPrice: 45, category: "pods", icon: "📦", 
+             desc: "Стики для устройств IQOS", 
+             tastes: [
+                {name: "Оригинальный", emoji: "🔴"}, {name: "Мята", emoji: "🌿"}, 
+                {name: "Фисташка", emoji: "🟢"}, {name: "Ягодный", emoji: "🫐"},
+                {name: "Кофейный", emoji: "☕"}, {name: "Ванильный", emoji: "🍦"},
+                {name: "Цитрусовый", emoji: "🍊"}, {name: "Табачный", emoji: "🌾"},
+                {name: "Экзотик", emoji: "🌴"}, {name: "Ледяная мята", emoji: "❄️"}
+             ], defaultTaste: "Оригинальный", quantities: [1, 2, 3, 5], defaultQuantity: 1},
+
+            // Презервативы (увеличенное количество вкусов)
+            {id: 301, name: "Презервативы Durex", price: 15, oldPrice: 20, category: "condoms", icon: "💝", 
+             desc: "Надежная защита с разными вкусами", 
+             tastes: [
+                {name: "Классические", emoji: "⚪"}, {name: "Клубника", emoji: "🍓"}, 
+                {name: "Банан", emoji: "🍌"}, {name: "Шоколад", emoji: "🍫"},
+                {name: "Ваниль", emoji: "🍦"}, {name: "Мята", emoji: "🌿"},
+                {name: "Арбуз", emoji: "🍉"}, {name: "Виноград", emoji: "🍇"},
+                {name: "Киви", emoji: "🥝"}, {name: "Ананас", emoji: "🍍"},
+                {name: "Карамель", emoji: "🍮"}, {name: "Кокос", emoji: "🥥"},
+                {name: "Вишня", emoji: "🍒"}, {name: "Малина", emoji: "🔴"},
+                {name: "Лимон", emoji: "🍋"}, {name: "Яблоко", emoji: "🍏"}
+             ], defaultTaste: "Классические", quantities: [3, 6, 12, 24], defaultQuantity: 3},
+
+            // Аксессуары
+            {id: 401, name: "Защитный чехол", price: 8, oldPrice: 15, category: "accessories", icon: "📱", 
+             desc: "Защитный чехол для устройства", 
+             colors: ["Черный", "Прозрачный", "Синий", "Красный", "Зеленый", "Фиолетовый", "Розовый", "Желтый", "Оранжевый", "Бирюзовый", "Коричневый", "Серый"],
+             defaultColor: "Черный"}
+        ];
+
+        let currentProduct = null;
+        let selectedOptions = {};
+        let quantity = 1;
+
+        // Функция для скрытия/показа шапки при скролле
+        let lastScrollTop = 0;
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const header = document.getElementById('header');
+            const scrollToTop = document.getElementById('scrollToTop');
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Скролл вниз - скрываем шапку
+                header.classList.add('hidden');
+                scrollToTop.classList.add('visible');
+            } else {
+                // Скролл вверх - показываем шапку
+                header.classList.remove('hidden');
+                if (scrollTop < 100) {
+                    scrollToTop.classList.remove('visible');
+                }
+            }
+            
+            lastScrollTop = scrollTop;
+        }
+
+        // Функция прокрутки к верху
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Показать категорию
+        function showCategory(category) {
+            const products = category === 'all' 
+                ? allProducts 
+                : allProducts.filter(product => product.category === category);
+            
+            renderProducts(products);
+        }
+
+        // Рендер товаров
+        function renderProducts(products = allProducts) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            products.forEach(product => {
+                const discount = product.oldPrice - product.price;
+                const rubPrice = Math.round(product.price * 30);
+                const oldRubPrice = Math.round(product.oldPrice * 30);
+
+                grid.innerHTML += `
+                    <div class="product-card" onclick="openProductModal(${product.id})">
+                        <div class="product-badge">-${discount} BYN</div>
+                        <div class="product-icon">${product.icon}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-desc">${product.desc}</div>
+                        <div class="product-price">
+                            <span class="price-old">${product.oldPrice} BYN</span>
+                            <span class="price-new">${product.price} BYN</span>
+                        </div>
+                        <div class="currency">${oldRubPrice} ₽ → ${rubPrice} ₽</div>
+                        <button class="buy-btn" onclick="event.stopPropagation(); openProductModal(${product.id})">
+                            <i class="fas fa-cog"></i> Выбрать параметры
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        // Открыть модальное окно товара
+        function openProductModal(productId) {
+            currentProduct = allProducts.find(p => p.id === productId);
+            selectedOptions = {};
+            quantity = currentProduct.defaultQuantity || 1;
+            
+            if (currentProduct) {
+                let modalContent = `
+                    <h2 style="font-size: clamp(4.5vw, 5.5vw, 24px); margin-bottom: 3vw; text-align: center;">
+                        ${currentProduct.icon} ${currentProduct.name}
+                    </h2>
+                    <p style="text-align: center; color: #666; margin-bottom: 4vw;">${currentProduct.desc}</p>
+                    
+                    <div class="instruction">
+                        <h4>📋 Инструкция по оформлению заказа:</h4>
+                        <ol>
+                            <li>Выберите параметры товара ниже</li>
+                            <li>Нажмите "Перейти к оплате"</li>
+                            <li>Шаблон заказа автоматически скопируется</li>
+                            <li>Вставьте шаблон в комментарий к оплате</li>
+                            <li>Оплатите заказ на Donation Alerts</li>
+                        </ol>
+                    </div>
+                `;
+
+                // Опции выбора вкуса
+                if (currentProduct.tastes) {
+                    modalContent += `
+                        <div class="option-group">
+                            <label class="option-label">🎯 Выберите вкус (${currentProduct.tastes.length} вариантов):</label>
+                            <div class="taste-grid">
+                                ${currentProduct.tastes.map(taste => `
+                                    <button class="taste-btn ${taste.name === currentProduct.defaultTaste ? 'selected' : ''}" 
+                                            onclick="selectOption('taste', '${taste.name}', '${taste.emoji}')">
+                                        <span class="taste-emoji">${taste.emoji}</span>
+                                        <span>${taste.name}</span>
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                    selectedOptions.taste = currentProduct.defaultTaste;
+                }
+
+                // Опции выбора цвета
+                if (currentProduct.colors) {
+                    modalContent += `
+                        <div class="option-group">
+                            <label class="option-label">🎨 Выберите цвет (${currentProduct.colors.length} вариантов):</label>
+                            <div class="color-grid">
+                                ${currentProduct.colors.map(color => `
+                                    <button class="color-btn ${color === currentProduct.defaultColor ? 'selected' : ''}" 
+                                            style="background: ${getColorValue(color)}"
+                                            onclick="selectOption('color', '${color}')"
+                                            title="${color}"></button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                    selectedOptions.color = currentProduct.defaultColor;
+                }
+
+                // Выбор количества
+                modalContent += `
+                    <div class="option-group">
+                        <label class="option-label">📦 Количество:</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                            <span class="quantity-value">${quantity}</span>
+                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                `;
+
+                // Итоговая цена
+                modalContent += `
+                    <div class="final-price">
+                        <div style="font-size: clamp(3.5vw, 4vw, 16px);">Итоговая цена:</div>
+                        <div class="final-price-text">${calculateFinalPrice()} BYN</div>
+                        <div style="font-size: clamp(3vw, 3.5vw, 14px);">${Math.round(calculateFinalPrice() * 30)} ₽</div>
+                    </div>
+                    
+                    <button class="payment-btn" onclick="proceedToPayment()">
+                        <i class="fas fa-credit-card"></i> Перейти к оплате
+                    </button>
+                    
+                    <button class="copy-btn" onclick="copyOrderTemplate()">
+                        <i class="far fa-copy"></i> Скопировать шаблон заказа
+                    </button>
+                `;
+
+                document.getElementById('modalProductInfo').innerHTML = modalContent;
+                document.getElementById('productModal').style.display = 'block';
+            }
+        }
+
+        // Функция копирования шаблона заказа
+        function copyOrderTemplate() {
+            if (currentProduct) {
+                const orderText = generateOrderTemplate();
+                navigator.clipboard.writeText(orderText).then(() => {
+                    showCopySuccess(event.target);
+                });
+            }
+        }
+
+        // Генерация шаблона заказа
+        function generateOrderTemplate() {
+            const optionsText = Object.keys(selectedOptions).map(key => 
+                `${key}: ${selectedOptions[key]}`
+            ).join(', ');
+            
+            return `Заказ из VapeMarket:
+Товар: ${currentProduct.name}
+Параметры: ${optionsText}
+Количество: ${quantity}
+Итоговая цена: ${calculateFinalPrice()} BYN (${Math.round(calculateFinalPrice() * 30)} ₽)
+Ссылка для оплаты: https://www.donationalerts.com/r/thegames373
+
+В комментарии к оплате укажите:
+• Ваше имя
+• Выбранные параметры
+• Ваш Telegram username`;
+        }
+
+        // Показать успешное копирование
+        function showCopySuccess(btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+            btn.style.background = 'linear-gradient(45deg, #00e676, #00c853)';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = 'linear-gradient(45deg, #00c853, #00e676)';
+            }, 2000);
+        }
+
+        // Перейти к оплате (копирует шаблон и открывает ссылку)
+        function proceedToPayment() {
+            if (currentProduct) {
+                // Сначала копируем шаблон
+                const orderText = generateOrderTemplate();
+                navigator.clipboard.writeText(orderText).then(() => {
+                    // Показываем уведомление о копировании
+                    const paymentBtn = event.target;
+                    const originalText = paymentBtn.innerHTML;
+                    paymentBtn.innerHTML = '<i class="fas fa-check"></i> Шаблон скопирован!';
+                    paymentBtn.style.background = 'linear-gradient(45deg, #00e676, #00c853)';
+                    
+                    // Открываем ссылку на Donation Alerts
+                    setTimeout(() => {
+                        window.open('https://www.donationalerts.com/r/thegames373', '_blank');
+                        paymentBtn.innerHTML = originalText;
+                        paymentBtn.style.background = 'linear-gradient(45deg, #ff6b35, #ff8c42)';
+                        closeModal();
+                    }, 1500);
+                });
+            }
+        }
+
+        // Получить цвет для кнопки
+        function getColorValue(colorName) {
+            const colors = {
+                'Черный': '#000000',
+                'Серебристый': '#C0C0C0',
+                'Синий': '#0000FF',
+                'Красный': '#FF0000',
+                'Белый': '#FFFFFF',
+                'Фиолетовый': '#800080',
+                'Золотой': '#FFD700',
+                'Серый': '#808080',
+                'Зеленый': '#008000',
+                'Розовый': '#FFC0CB',
+                'Прозрачный': 'linear-gradient(45deg, #f0f0f0, #ffffff)',
+                'Хаки': '#8B9476',
+                'Оранжевый': '#FFA500',
+                'Бирюзовый': '#40E0D0',
+                'Желтый': '#FFFF00',
+                'Коричневый': '#8B4513',
+                'Градиентный': 'linear-gradient(45deg, #FF0000, #0000FF)',
+                'Бронзовый': '#CD7F32'
+            };
+            return colors[colorName] || '#CCCCCC';
+        }
+
+        // Выбор опции
+        function selectOption(optionType, value, emoji = '') {
+            selectedOptions[optionType] = value;
+            
+            // Обновляем кнопки
+            if (optionType === 'taste') {
+                document.querySelectorAll('.taste-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                event.target.classList.add('selected');
+            } else if (optionType === 'color') {
+                document.querySelectorAll('.color-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                event.target.classList.add('selected');
+            }
+            
+            // Обновляем цену
+            updateFinalPrice();
+        }
+
+        // Изменение количества
+        function changeQuantity(delta) {
+            quantity = Math.max(1, quantity + delta);
+            document.querySelector('.quantity-value').textContent = quantity;
+            updateFinalPrice();
+        }
+
+        // Расчет итоговой цены
+        function calculateFinalPrice() {
+            return currentProduct.price * quantity;
+        }
+
+        // Обновление отображения цены
+        function updateFinalPrice() {
+            const finalPrice = calculateFinalPrice();
+            document.querySelector('.final-price-text').textContent = `${finalPrice} BYN`;
+            document.querySelector('.final-price div:last-child').textContent = `${Math.round(finalPrice * 30)} ₽`;
+        }
+
+        // Закрыть модальное окно
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // Инициализация
+        window.onload = function() {
+            renderProducts();
+            window.addEventListener('scroll', handleScroll, { passive: true });
+        };
+
+        // Закрыть модальное окно при клике вне его
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
